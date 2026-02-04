@@ -1,0 +1,148 @@
+# YOLOv7 資料集設定檔範本 (Dataset Configuration Template)
+#
+# 此檔案定義了訓練資料集的結構和類別資訊。
+# 請根據您的實際資料集修改以下設定。
+#
+# 使用方式:
+#   python train.py --data configs/data/custom.yaml
+
+# ==================================================
+# 資料集路徑設定 (Dataset Paths)
+# ==================================================
+
+# 訓練集路徑 (Training Set Path)
+# 可以是絕對路徑或相對於此設定檔的相對路徑
+train: ../../../data/images/train
+
+# 驗證集路徑 (Validation Set Path)
+val: ../../../data/images/val
+
+# 測試集路徑 (Test Set Path) - 選填
+# test: ../../../data/images/test
+
+# ==================================================
+# 類別設定 (Class Configuration)
+# ==================================================
+
+# 類別數量 (Number of Classes)
+# 這個數字必須與下方 names 列表中的類別數量一致
+nc: 80
+
+# 類別名稱列表 (Class Names)
+# 使用 COCO 資料集的 80 個類別作為範例
+# 請根據您的資料集修改這個列表
+names:
+  - person          # 0: 人
+  - bicycle         # 1: 腳踏車
+  - car             # 2: 汽車
+  - motorcycle      # 3: 機車
+  - airplane        # 4: 飛機
+  - bus             # 5: 公車
+  - train           # 6: 火車
+  - truck           # 7: 卡車
+  - boat            # 8: 船
+  - traffic light   # 9: 紅綠燈
+  - fire hydrant    # 10: 消防栓
+  - stop sign       # 11: 停止標誌
+  - parking meter   # 12: 停車計時器
+  - bench           # 13: 長椅
+  - bird            # 14: 鳥
+  - cat             # 15: 貓
+  - dog             # 16: 狗
+  - horse           # 17: 馬
+  - sheep           # 18: 羊
+  - cow             # 19: 牛
+  - elephant        # 20: 大象
+  - bear            # 21: 熊
+  - zebra           # 22: 斑馬
+  - giraffe         # 23: 長頸鹿
+  - backpack        # 24: 背包
+  - umbrella        # 25: 雨傘
+  - handbag         # 26: 手提包
+  - tie             # 27: 領帶
+  - suitcase        # 28: 行李箱
+  - frisbee         # 29: 飛盤
+  - skis            # 30: 滑雪板
+  - snowboard       # 31: 滑雪板(單板)
+  - sports ball     # 32: 運動球
+  - kite            # 33: 風箏
+  - baseball bat    # 34: 棒球棒
+  - baseball glove  # 35: 棒球手套
+  - skateboard      # 36: 滑板
+  - surfboard       # 37: 衝浪板
+  - tennis racket   # 38: 網球拍
+  - bottle          # 39: 瓶子
+  - wine glass      # 40: 酒杯
+  - cup             # 41: 杯子
+  - fork            # 42: 叉子
+  - knife           # 43: 刀子
+  - spoon           # 44: 湯匙
+  - bowl            # 45: 碗
+  - banana          # 46: 香蕉
+  - apple           # 47: 蘋果
+  - sandwich        # 48: 三明治
+  - orange          # 49: 橘子
+  - broccoli        # 50: 花椰菜
+  - carrot          # 51: 紅蘿蔔
+  - hot dog         # 52: 熱狗
+  - pizza           # 53: 披薩
+  - donut           # 54: 甜甜圈
+  - cake            # 55: 蛋糕
+  - chair           # 56: 椅子
+  - couch           # 57: 沙發
+  - potted plant    # 58: 盆栽
+  - bed             # 59: 床
+  - dining table    # 60: 餐桌
+  - toilet          # 61: 馬桶
+  - tv              # 62: 電視
+  - laptop          # 63: 筆記型電腦
+  - mouse           # 64: 滑鼠
+  - remote          # 65: 遙控器
+  - keyboard        # 66: 鍵盤
+  - cell phone      # 67: 手機
+  - microwave       # 68: 微波爐
+  - oven            # 69: 烤箱
+  - toaster         # 70: 烤麵包機
+  - sink            # 71: 水槽
+  - refrigerator    # 72: 冰箱
+  - book            # 73: 書
+  - clock           # 74: 時鐘
+  - vase            # 75: 花瓶
+  - scissors        # 76: 剪刀
+  - teddy bear      # 77: 泰迪熊
+  - hair drier      # 78: 吹風機
+  - toothbrush      # 79: 牙刷
+
+# ==================================================
+# YOLO 標籤格式說明 (YOLO Label Format)
+# ==================================================
+#
+# YOLO 格式的標籤檔案是純文字檔案，每行代表一個物件:
+# <class_id> <x_center> <y_center> <width> <height>
+#
+# 重要事項:
+# - 所有座標都是相對於圖片尺寸的正規化值 (0.0 ~ 1.0)
+# - class_id 從 0 開始
+# - x_center, y_center 是邊界框中心點座標
+# - width, height 是邊界框的寬度和高度
+#
+# 範例 (example.txt):
+# 0 0.5 0.5 0.3 0.4    <- 在圖片中央有一個 person
+# 15 0.2 0.8 0.1 0.15  <- 在左下方有一隻 cat
+#
+# 檔案結構範例:
+# data/
+# ├── images/
+# │   ├── train/
+# │   │   ├── img001.jpg
+# │   │   └── img002.jpg
+# │   └── val/
+# │       ├── img003.jpg
+# │       └── img004.jpg
+# └── labels/
+#     ├── train/
+#     │   ├── img001.txt  <- 對應 img001.jpg 的標籤
+#     │   └── img002.txt
+#     └── val/
+#         ├── img003.txt
+#         └── img004.txt
